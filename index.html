@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://api.notrack.ai" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Zukai Dev","alternateName":"kyedeveloper","url":"https://github.com/kyedeveloper","image":"https://avatars.githubusercontent.com/u/232821804?v=4","jobTitle":"Web Developer","knowsAbout":["JavaScript","Node.js","Serverless","UI Engineering"],"sameAs":["https://github.com/kyedeveloper","https://www.juikoprem.my.id"]}
+{"@context":"https://schema.org","@type":"Person","name":"Zukai Dev","alternateName":"kyedeveloper","url":"https://github.com/kyedeveloper","image":"https://avatars.githubusercontent.com/u/232821804?v=4","jobTitle":"Web Developer","knowsAbout":["JavaScript","Node.js","Serverless","UI Engineering"],"sameAs":["https://github.com/kyedeveloper","https://www.juikoprem.my.id","https://www.tiktok.com/@feyzzie1","https://t.me/fiyaaw"]}
 </script>
 <style>
 /* ================= TOKENS ================= */
@@ -50,7 +50,6 @@ ul{margin:0}
 :focus-visible{outline:2px solid var(--c); outline-offset:3px; border-radius:6px}
 .mono{font-family:'JetBrains Mono',monospace; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase}
 code{font-family:'JetBrains Mono',monospace; font-size:.86em; background:rgba(255,255,255,.08); padding:1px 5px; border-radius:5px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 /* ================= STAGE ================= */
 .stage{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
@@ -82,29 +81,30 @@ body.cur-hot .cur{width:76px;height:76px;margin:-38px 0 0 -38px}
 body.cur-hot .cur-dot{opacity:.35}
 @media(hover:none){.cur,.cur-dot{display:none}}
 
-/* ================= BOOT LOADER ================= */
-#boot{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 40%,#0d0a18,#04050a 68%);transition:opacity .7s var(--ease),visibility .7s}
-#boot.done{opacity:0;visibility:hidden}
-.boot-in{display:grid;justify-items:center;gap:20px;width:min(78vw,300px);text-align:center}
-.boot-mark{position:relative;width:74px;height:74px;border-radius:24px;display:grid;place-items:center;background:rgba(255,255,255,.07);border:1px solid var(--line-strong);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);overflow:hidden}
+/* ================= BOOT ================= */
+#boot{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 40%,#0d0a18,#04050a 68%);transition:opacity .6s var(--ease),visibility .6s}
+#boot.done{opacity:0;visibility:hidden;pointer-events:none}
+.boot-in{display:grid;justify-items:center;gap:18px;width:min(78vw,300px);text-align:center}
+.boot-mark{position:relative;width:70px;height:70px;border-radius:23px;display:grid;place-items:center;background:rgba(255,255,255,.07);border:1px solid var(--line-strong);overflow:hidden}
 .boot-mark::before{content:'';position:absolute;inset:-60%;background:conic-gradient(from 0deg,transparent,var(--v),var(--c),transparent);animation:spin 1.9s linear infinite}
-.boot-mark::after{content:'';position:absolute;inset:2px;border-radius:21px;background:#0a0b12}
-.boot-mark b{position:relative;z-index:2;font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;background:linear-gradient(120deg,#fff,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.boot-mark::after{content:'';position:absolute;inset:2px;border-radius:20px;background:#0a0b12}
+.boot-mark b{position:relative;z-index:2;font-family:'Space Grotesk';font-size:1.45rem;font-weight:700;background:linear-gradient(120deg,#fff,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
 @keyframes spin{to{transform:rotate(360deg)}}
-.boot-txt{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.boot-txt{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
 .boot-bar{width:100%;height:2px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
-.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--v),var(--c),var(--l));transition:width .35s var(--ease)}
-.boot-pct{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--dim);letter-spacing:.1em}
+.boot-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--v),var(--c),var(--l));transition:width .3s var(--ease)}
+.boot-pct{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--dim);letter-spacing:.1em}
+#bootErr{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--bad);max-width:280px;word-break:break-word;display:none}
 
-/* ================= PAGE WIPE ================= */
-.wipe{position:fixed;inset:0;z-index:940;pointer-events:none;display:grid;place-items:center;background:rgba(6,7,12,.74);-webkit-backdrop-filter:blur(26px) saturate(150%);backdrop-filter:blur(26px) saturate(150%);clip-path:inset(0 0 100% 0);transition:clip-path .52s cubic-bezier(.76,0,.24,1)}
+/* ================= WIPE ================= */
+.wipe{position:fixed;inset:0;z-index:940;pointer-events:none;display:grid;place-items:center;background:rgba(6,7,12,.74);-webkit-backdrop-filter:blur(26px) saturate(150%);backdrop-filter:blur(26px) saturate(150%);clip-path:inset(0 0 100% 0);transition:clip-path .5s cubic-bezier(.76,0,.24,1)}
 .wipe.on{clip-path:inset(0 0 0 0)}
-.wipe-in{display:grid;justify-items:center;gap:14px;opacity:0;transform:translateY(14px);transition:.35s var(--ease)}
-.wipe.on .wipe-in{opacity:1;transform:none;transition-delay:.12s}
-.wipe-in .ringy{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.15);border-top-color:var(--c);animation:spin .8s linear infinite}
-.wipe-in span{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.wipe-in{display:grid;justify-items:center;gap:12px;opacity:0;transform:translateY(12px);transition:.32s var(--ease)}
+.wipe.on .wipe-in{opacity:1;transform:none;transition-delay:.1s}
+.wipe-in .ringy{width:30px;height:30px;border-radius:50%;border:2px solid rgba(255,255,255,.15);border-top-color:var(--c);animation:spin .8s linear infinite}
+.wipe-in span{font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 
-/* ================= PROGRESS + NAV ================= */
+/* ================= NAV ================= */
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);z-index:800;background:linear-gradient(90deg,var(--v),var(--c),var(--l))}
 .nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:700;width:min(calc(100% - 24px),860px);border-radius:var(--r-full);background:rgba(10,12,18,.55);-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 18px 44px -22px rgba(0,0,0,.95);transition:transform .55s var(--ease),opacity .35s}
 .nav.hide{transform:translateX(-50%) translateY(-160%);opacity:0}
@@ -132,7 +132,7 @@ body.cur-hot .cur-dot{opacity:.35}
 .dock{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:700;display:none;gap:2px;padding:7px;border-radius:var(--r-full);background:rgba(10,12,18,.66);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--line);box-shadow:0 20px 50px -20px #000}
 .dock a,.dock button{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;color:var(--muted);transition:.28s var(--ease)}
 .dock svg{width:19px;height:19px}
-.dock .on,.dock a:active,.dock button:active{background:rgba(255,255,255,.14);color:#fff}
+.dock .on,.dock a:active{background:rgba(255,255,255,.14);color:#fff}
 @media(max-width:860px){.dock{display:flex}}
 
 /* ================= LAYOUT ================= */
@@ -180,7 +180,6 @@ body.cur-hot .cur-dot{opacity:.35}
 .hero-meta div{font-size:.71rem;color:var(--dim)}
 .hero-meta b{display:block;font-family:'Space Grotesk';font-size:1.12rem;color:var(--ink);letter-spacing:-.03em}
 
-/* hero art — fixed overflow */
 .art{position:relative;display:grid;place-items:center;isolation:isolate}
 @media(min-width:941px){.art{aspect-ratio:1/1.02}}
 @media(max-width:940px){.art{padding:14px 0 18px;max-width:430px;margin-inline:auto;width:100%}}
@@ -268,8 +267,6 @@ body.scrolling .track{filter:blur(.5px)}
 .card-num{position:absolute;right:14px;bottom:10px;font-family:'Space Grotesk';font-size:2.4rem;font-weight:700;color:rgba(255,255,255,.045);letter-spacing:-.05em;pointer-events:none;line-height:1}
 .card:hover{box-shadow:0 40px 90px -40px rgba(139,92,246,.6)}
 .empty{padding:44px 20px;text-align:center;color:var(--dim);font-size:.86rem;border:1px dashed var(--line);border-radius:var(--r-lg)}
-
-/* skeleton */
 .sk{border-radius:var(--r-lg);background:linear-gradient(100deg,rgba(255,255,255,.05) 30%,rgba(255,255,255,.12) 50%,rgba(255,255,255,.05) 70%);background-size:220% 100%;animation:shim 1.3s linear infinite;height:74px;border:1px solid var(--line)}
 @keyframes shim{to{background-position:-220% 0}}
 
@@ -307,7 +304,7 @@ canvas{width:100%;display:block;border-radius:var(--r-sm)}
 .node .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px 1px rgba(74,222,128,.7)}
 .node .dot.warn{background:var(--a);box-shadow:0 0 8px 1px rgba(251,191,36,.7)}
 .node .dot.bad{background:var(--bad);box-shadow:0 0 8px 1px rgba(251,113,133,.7)}
-.node .bar{height:5px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+.node .bar{height:5px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;width:90px}
 .node .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--c),var(--v));transition:width .6s var(--ease)}
 .logs{font-family:'JetBrains Mono',monospace;font-size:.7rem;line-height:1.8;max-height:250px;overflow-y:auto;padding-right:6px}
 .logs div{display:flex;gap:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:logIn .35s var(--ease)}
@@ -462,7 +459,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
 .swatches button:hover{transform:scale(1.12)}
 .swatches button.on{border-color:#fff}
 .sheet-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-top:1px solid var(--line);font-size:.8rem;margin-top:8px}
-.sheet-row:first-of-type{border-top:0}
 .switch{width:42px;height:24px;border-radius:var(--r-full);background:rgba(255,255,255,.14);position:relative;transition:.3s}
 .switch::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.3s var(--spring)}
 .switch.on{background:var(--v)}
@@ -479,19 +475,18 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
 .totop.on{opacity:1;visibility:visible}
 .totop svg{width:16px;height:16px}
 @media(min-width:861px){.totop{bottom:24px}}
-.spinner{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;animation:spin .7s linear infinite;display:inline-block}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none;filter:none}}
 </style>
 </head>
 <body>
 
-<!-- BOOT -->
 <div id="boot">
   <div class="boot-in">
     <div class="boot-mark"><b>Z</b></div>
     <div class="boot-txt">menyiapkan antarmuka</div>
     <div class="boot-bar"><i id="bootBar"></i></div>
     <div class="boot-pct" id="bootPct">0%</div>
+    <div id="bootErr"></div>
   </div>
 </div>
 
@@ -550,7 +545,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
 
 <main id="app">
 
-  <!-- ============ HOME ============ -->
   <section class="view" id="v-home" data-title="Beranda">
     <div class="hero">
       <div class="wrap">
@@ -622,7 +616,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
     </div>
   </section>
 
-  <!-- ============ WORK ============ -->
   <section class="view" id="v-work" data-title="Proyek">
     <div class="wrap page">
       <div class="sec-head rv">
@@ -647,7 +640,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
     </div>
   </section>
 
-  <!-- ============ ACTIVITY ============ -->
   <section class="view" id="v-activity" data-title="Aktivitas">
     <div class="wrap page">
       <div class="sec-head rv">
@@ -686,7 +678,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
     </div>
   </section>
 
-  <!-- ============ LIVE ============ -->
   <section class="view" id="v-live" data-title="Live">
     <div class="wrap page">
       <div class="mon-head rv">
@@ -737,7 +728,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
     </div>
   </section>
 
-  <!-- ============ AI ============ -->
   <section class="view" id="v-ai" data-title="AI">
     <div class="wrap page">
       <div class="sec-head rv">
@@ -749,7 +739,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
       <div class="ai-shell rv">
         <div class="ai-main glass">
           <div class="ai-top">
-            <div class="ai-ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5M12 3v3"/></svg></div>
+            <div class="ai-ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5"/></svg></div>
             <div>
               <b>Zukai AI</b>
               <div class="sub">notrack-uncensored · 64K ctx</div>
@@ -801,7 +791,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
     </div>
   </section>
 
-  <!-- ============ PREMIUM ============ -->
   <section class="view" id="v-premium" data-title="Premium">
     <div class="wrap page">
       <div class="promo glass rv">
@@ -844,7 +833,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
   <section class="view" id="v-about" data-title="Tentang">
     <div class="wrap page">
       <div class="about">
@@ -890,8 +878,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
       </div>
       <div class="f-col"><h5>Lainnya</h5>
         <a href="https://github.com/kyedeveloper" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://github.com/kyedeveloper?tab=repositories" target="_blank" rel="noopener">Semua repo</a>
-        <a href="https://vt.tiktok.com/ZSsYjkEje/" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.tiktok.com/@feyzzie1" target="_blank" rel="noopener">TikTok @feyzzie1</a>
+        <a href="https://t.me/fiyaaw" target="_blank" rel="noopener">Telegram @fiyaaw</a>
       </div>
     </div>
     <div class="f-bottom">
@@ -903,7 +891,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
 
 <button class="totop" id="toTop" aria-label="Ke atas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 
-<!-- PALETTE -->
 <div class="scrim" id="scrim"></div>
 <div class="pal" id="pal" role="dialog" aria-label="Pencarian">
   <div class="pal-in">
@@ -917,7 +904,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
   </div>
 </div>
 
-<!-- SHEET -->
 <div class="sheet" id="sheet">
   <h5>Aksen warna</h5>
   <div class="swatches" id="swatches">
@@ -937,7 +923,42 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
 (() => {
 'use strict';
 
-/* ================== CONFIG ================== */
+/* ============ BOOT (paling awal, punya failsafe) ============ */
+const bootEl = document.getElementById('boot');
+const bootBar = document.getElementById('bootBar');
+const bootPct = document.getElementById('bootPct');
+const bootErr = document.getElementById('bootErr');
+let booted = false;
+let bootTick = null;
+
+function endBoot(msg){
+  if (booted) return;
+  booted = true;
+  if (bootTick) clearInterval(bootTick);
+  if (msg) { bootErr.style.display = 'block'; bootErr.textContent = msg; }
+  bootBar.style.width = '100%';
+  bootPct.textContent = '100%';
+  setTimeout(() => {
+    bootEl.classList.add('done');
+    setTimeout(() => bootEl.remove(), 700);
+    try { route(location.hash || '#/home', false); }
+    catch (e) { console.error(e); }
+  }, msg ? 900 : 120);
+}
+
+let bp = 0;
+bootTick = setInterval(() => {
+  bp = Math.min(bp + 9 + Math.random() * 14, 100);
+  bootBar.style.width = bp + '%';
+  bootPct.textContent = Math.round(bp) + '%';
+  if (bp >= 100) endBoot();
+}, 95);
+
+setTimeout(() => endBoot(), 4500);                       // failsafe
+addEventListener('error', e => { if (!booted) endBoot('JS: ' + (e.message || 'error')); });
+addEventListener('unhandledrejection', () => { if (!booted) endBoot('Promise ditolak'); });
+
+/* ============ CONFIG ============ */
 const AI_BASE = 'https://api.notrack.ai/v1';
 const AI_MODEL = 'notrack-uncensored';
 const DEFAULT_KEY = 'sk-notrack-79d08413a99586643a53057599f600a7410c028b2e1996e5';
@@ -946,19 +967,19 @@ const HEALTH = 'https://www.juikoprem.my.id/api/health';
 const SYS = 'Kamu "Zukai AI", asisten di situs pribadi Zukai Dev. Jawab dalam Bahasa Indonesia santai tapi rapi, pakai markdown kalau perlu (heading, list, code block). Ringkas, langsung ke inti, tanpa disclaimer berlebihan. Kamu nggak nge-refuse hal wajar.';
 
 const SOCIALS = [
-  { label:'GitHub', url:'https://github.com/kyedeveloper', d:'M0 0' , icon:'gh' },
-  { label:'TikTok', url:'https://vt.tiktok.com/ZSsYjkEje/', icon:'tt' },
-  { label:'Situs Premium', url:'https://www.juikoprem.my.id', icon:'globe' },
-  { label:'ZukaiTemp', url:'https://zukaitemp.vercel.app', icon:'globe' }
+  { label:'GitHub', url:'https://github.com/kyedeveloper', icon:'gh' },
+  { label:'TikTok @feyzzie1', url:'https://www.tiktok.com/@feyzzie1', icon:'tt' },
+  { label:'Telegram @fiyaaw', url:'https://t.me/fiyaaw', icon:'tg' },
+  { label:'Situs Premium', url:'https://www.juikoprem.my.id', icon:'globe' }
 ];
 
 const ICON = {
   gh:'<path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7 0-.7 0-.7 1.2 0 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/>',
   tt:'<path d="M16.5 3c.3 2.3 1.8 4 4 4.3v3.2a7.4 7.4 0 0 1-4-1.2v6.1a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.3a2.8 2.8 0 1 0 2 2.7V3h3Z"/>',
+  tg:'<path d="M21.6 3.7 2.9 10.8c-1 .4-.9 1.6.1 1.9l4.5 1.4 1.7 5.1c.3.8 1.2 1 1.7.4l2.5-2.6 4.6 3.3c.7.5 1.7.1 1.9-.8l3-13.5c.2-.9-.7-1.7-1.3-1.3Z"/>',
   globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/>'
 };
 
-/* ================== PROJECT DATA ================== */
 const PROJECTS = [
   { id:'am-premium', title:'AM Premium — Zukai Terminal', kind:'flagship', cls:'full', icon:'term',
     desc:'Terminal web buat aktivasi premium Alight Motion. Dua kolom input, satu tombol: kirim magic link, tempel URL dari inbox, inject. Semua logika berat — login OOB, verifyPurchase, penyimpanan token, hitung kuota — jalan di serverless function, bukan di browser. Ada lab bawaan: shell sandbox 13 bahasa, downloader 17 platform, manga reader 10 sumber, pemutar musik, dan temp mail 17 provider dengan failover.',
@@ -1015,11 +1036,11 @@ const P_ICON = {
   music:'<path d="M6 3v12a3 3 0 1 0 6 0V3"/><circle cx="16" cy="17" r="4"/>'
 };
 
-/* ================== HELPERS ================== */
+/* ============ HELPERS ============ */
 const $ = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
-const reduceMQ = matchMedia('(prefers-reduced-motion: reduce)');
-let REDUCE = reduceMQ.matches;
+const REDUCE_MQ = matchMedia('(prefers-reduced-motion: reduce)');
+let REDUCE = REDUCE_MQ.matches;
 const LS = {
   get(k, d){ try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
@@ -1027,7 +1048,7 @@ const LS = {
 };
 const esc = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const pad = n => String(n).padStart(2, '0');
-const now = () => { const d = new Date(); return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; };
+const clock = () => { const d = new Date(); return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()); };
 const rnd = (a, b) => a + Math.random() * (b - a);
 const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
 
@@ -1040,33 +1061,15 @@ function toast(msg, type = ''){
   setTimeout(() => el.remove(), 2700);
 }
 
-/* ================== BOOT ================== */
-const bootBar = $('#bootBar'), bootPct = $('#bootPct');
-let bp = 0;
-const bootTick = setInterval(() => {
-  bp = Math.min(bp + rnd(7, 22), 100);
-  bootBar.style.width = bp + '%';
-  bootPct.textContent = Math.round(bp) + '%';
-  if (bp >= 100) {
-    clearInterval(bootTick);
-    setTimeout(() => {
-      $('#boot').classList.add('done');
-      setTimeout(() => $('#boot').remove(), 800);
-      route(location.hash || '#/home', false);
-    }, 240);
-  }
-}, 130);
-
-/* ================== ROUTER ================== */
+/* ============ ROUTER ============ */
 const ROUTES = { home:'Beranda', work:'Proyek', activity:'Aktivitas', live:'Live', ai:'AI', premium:'Premium', about:'Tentang' };
 let current = null, busy = false;
 
 function setTabInd(){
-  const el = $('.tabs a.on');
-  const ind = $('#tabInd');
+  const el = $('.tabs a.on'), ind = $('#tabInd');
   if (!el) { ind.style.width = '0px'; return; }
   ind.style.width = el.offsetWidth + 'px';
-  ind.style.transform = `translateX(${el.offsetLeft}px)`;
+  ind.style.transform = 'translateX(' + el.offsetLeft + 'px)';
 }
 
 function renderChrome(name){
@@ -1083,11 +1086,12 @@ function swap(name){
   renderChrome(name);
   observeReveals();
   if (name === 'live') startMonitor();
-  if (name === 'ai') setTimeout(() => $('#aiInput')?.focus(), 400);
-  scrollTo({ top: 0, behavior: 'instant' in document.documentElement.style ? 'instant' : 'auto' });
+  if (name === 'ai') setTimeout(() => { const i = $('#aiInput'); if (i) i.focus(); }, 400);
+  window.scrollTo(0, 0);
 }
 
-function route(hash, animate = true){
+function route(hash, animate){
+  if (animate === undefined) animate = true;
   const name = (hash || '#/home').replace('#/', '').split('?')[0] || 'home';
   const target = ROUTES[name] ? name : 'home';
   if (target === current || busy) { if (!busy) renderChrome(target); return; }
@@ -1103,10 +1107,7 @@ function route(hash, animate = true){
   wipe.classList.add('on');
   setTimeout(() => {
     run();
-    setTimeout(() => {
-      wipe.classList.remove('on');
-      busy = false;
-    }, 90);
+    setTimeout(() => { wipe.classList.remove('on'); busy = false; }, 90);
   }, 330);
 }
 
@@ -1121,24 +1122,18 @@ document.addEventListener('click', e => {
   route(h);
 });
 
-/* ================== RENDER ================== */
+/* ============ CARDS ============ */
 function cardHTML(p, idx){
-  return `<article class="card ${p.cls || ''} glass sheen rv" data-tilt>
-    <div class="card-in">
-      <div class="card-top">
-        <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">${P_ICON[p.icon] || ''}</svg></div>
-        <div style="display:flex;gap:5px">${p.tags.map(([c, t]) => `<span class="tag ${c}">${esc(t)}</span>`).join('')}</div>
-      </div>
-      <h3>${esc(p.title)}</h3>
-      <p>${esc(p.desc)}</p>
-      <div class="card-foot">
-        <span class="lang"><i style="background:${p.lang[1]}"></i>${esc(p.lang[0])}</span>
-        ${p.extra ? `<span class="lang">${esc(p.extra)}</span>` : ''}
-        <a class="card-link" href="${p.url}" target="_blank" rel="noopener">${esc(p.cta)}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-      </div>
-    </div><span class="card-num">${pad(idx + 1)}</span>
-  </article>`;
+  return '<article class="card ' + (p.cls || '') + ' glass sheen rv" data-tilt>' +
+    '<div class="card-in"><div class="card-top">' +
+    '<div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">' + (P_ICON[p.icon] || '') + '</svg></div>' +
+    '<div style="display:flex;gap:5px">' + p.tags.map(t => '<span class="tag ' + t[0] + '">' + esc(t[1]) + '</span>').join('') + '</div>' +
+    '</div><h3>' + esc(p.title) + '</h3><p>' + esc(p.desc) + '</p><div class="card-foot">' +
+    '<span class="lang"><i style="background:' + p.lang[1] + '"></i>' + esc(p.lang[0]) + '</span>' +
+    (p.extra ? '<span class="lang">' + esc(p.extra) + '</span>' : '') +
+    '<a class="card-link" href="' + p.url + '" target="_blank" rel="noopener">' + esc(p.cta) +
+    ' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M7 17 17 7M9 7h8v8"/></svg></a>' +
+    '</div></div><span class="card-num">' + pad(idx + 1) + '</span></article>';
 }
 
 $('#homeFeatured').innerHTML = PROJECTS.slice(0, 3).map(cardHTML).join('');
@@ -1150,12 +1145,10 @@ function paintWork(){
     (filterKind === 'all' || p.kind === filterKind) &&
     (!q || (p.title + p.desc + p.lang[0] + p.tags.map(t => t[1]).join(' ')).toLowerCase().includes(q))
   );
-  const grid = $('#workGrid');
-  grid.innerHTML = list.length
+  $('#workGrid').innerHTML = list.length
     ? list.map(cardHTML).join('')
-    : `<div class="empty" style="grid-column:1/-1">Nggak ada proyek yang cocok. Coba kata kunci lain.</div>`;
-  observeReveals();
-  bindTilt();
+    : '<div class="empty" style="grid-column:1/-1">Nggak ada proyek yang cocok. Coba kata kunci lain.</div>';
+  observeReveals(); bindTilt();
 }
 paintWork();
 
@@ -1164,17 +1157,17 @@ $('#filters').addEventListener('click', e => {
   const b = e.target.closest('button[data-f]');
   if (!b) return;
   $$('#filters button').forEach(x => x.classList.remove('on'));
-  b.classList.add('on');
-  filterKind = b.dataset.f;
-  paintWork();
+  b.classList.add('on'); filterKind = b.dataset.f; paintWork();
 });
 
-$('#socialsHome').innerHTML = SOCIALS.map(s =>
-  `<a class="social" href="${s.url}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="${s.icon === 'globe' ? 'none' : 'currentColor'}" stroke="${s.icon === 'globe' ? 'currentColor' : 'none'}" stroke-width="1.8">${ICON[s.icon]}</svg>${esc(s.label)}</a>`
-).join('');
-$('#socialsAbout').innerHTML = $('#socialsHome').innerHTML;
+const socialHTML = SOCIALS.map(s =>
+  '<a class="social" href="' + s.url + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="' +
+  (s.icon === 'globe' ? 'none' : 'currentColor') + '" stroke="' + (s.icon === 'globe' ? 'currentColor' : 'none') +
+  '" stroke-width="1.8">' + ICON[s.icon] + '</svg>' + esc(s.label) + '</a>').join('');
+$('#socialsHome').innerHTML = socialHTML;
+$('#socialsAbout').innerHTML = socialHTML;
 
-/* ================== REVEAL / COUNT / TILT ================== */
+/* ============ REVEAL / COUNT / TILT ============ */
 const io = new IntersectionObserver(es => {
   es.forEach((e, i) => {
     if (!e.isIntersecting) return;
@@ -1209,7 +1202,7 @@ function bindTilt(){
       const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
       card.style.setProperty('--mx', px * 100 + '%');
       card.style.setProperty('--my', py * 100 + '%');
-      card.style.transform = `perspective(900px) rotateX(${(0.5 - py) * 6}deg) rotateY(${(px - 0.5) * 6}deg)`;
+      card.style.transform = 'perspective(900px) rotateX(' + ((0.5 - py) * 6) + 'deg) rotateY(' + ((px - 0.5) * 6) + 'deg)';
     });
     card.addEventListener('pointerleave', () => { card.style.transform = ''; });
   });
@@ -1222,25 +1215,32 @@ $$('.glass').forEach(g => g.addEventListener('pointermove', e => {
   g.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
 }));
 
-/* ================== CURSOR / MAGNET / RIPPLE ================== */
-const cur = $('#cur'), dot = $('#curDot');
+/* ============ CURSOR / MAGNET / RIPPLE ============ */
+const cur = $('#cur'), curDot = $('#curDot');
 let curOn = LS.get('z_cur', true);
 if (curOn && matchMedia('(hover:hover)').matches && !REDUCE) {
   let tx = innerWidth / 2, ty = innerHeight / 2, cx = tx, cy = ty;
-  addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; dot.style.transform = `translate(${tx}px,${ty}px)`; }, { passive: true });
-  (function loop(){ cx += (tx - cx) * .16; cy += (ty - cy) * .16; cur.style.transform = `translate(${cx}px,${cy}px)`; requestAnimationFrame(loop); })();
+  addEventListener('pointermove', e => {
+    tx = e.clientX; ty = e.clientY;
+    curDot.style.transform = 'translate(' + tx + 'px,' + ty + 'px)';
+  }, { passive: true });
+  (function loop(){
+    cx += (tx - cx) * .16; cy += (ty - cy) * .16;
+    cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px)';
+    requestAnimationFrame(loop);
+  })();
   document.addEventListener('pointerover', e => {
     if (e.target.closest('a,button,summary,[data-tilt]')) document.body.classList.add('cur-hot');
     else document.body.classList.remove('cur-hot');
   });
-} else { cur.style.display = dot.style.display = 'none'; }
+} else { cur.style.display = 'none'; curDot.style.display = 'none'; }
 
 if (!REDUCE) {
   document.addEventListener('pointermove', e => {
     const b = e.target.closest('[data-magnet]');
     if (!b) return;
     const r = b.getBoundingClientRect();
-    b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .14}px,${(e.clientY - r.top - r.height / 2) * .2}px)`;
+    b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .14) + 'px,' + ((e.clientY - r.top - r.height / 2) * .2) + 'px)';
   });
   document.addEventListener('pointerout', e => {
     const b = e.target.closest('[data-magnet]');
@@ -1254,22 +1254,23 @@ document.addEventListener('pointerdown', e => {
   const r = b.getBoundingClientRect(), s = Math.max(r.width, r.height);
   const el = document.createElement('span');
   el.className = 'ripple';
-  el.style.cssText = `width:${s}px;height:${s}px;left:${e.clientX - r.left - s / 2}px;top:${e.clientY - r.top - s / 2}px`;
+  el.style.cssText = 'width:' + s + 'px;height:' + s + 'px;left:' + (e.clientX - r.left - s / 2) + 'px;top:' + (e.clientY - r.top - s / 2) + 'px';
   b.appendChild(el);
   setTimeout(() => el.remove(), 640);
 });
 
-/* ================== SCROLL UI ================== */
+/* ============ SCROLL ============ */
 const prog = $('#prog'), nav = $('#nav'), toTop = $('#toTop');
 let lastY = scrollY, ticking = false, blurT;
 addEventListener('scroll', () => {
   const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
-  prog.style.transform = `scaleX(${h > 0 ? clamp(y / h, 0, 1) : 0})`;
+  prog.style.transform = 'scaleX(' + (h > 0 ? clamp(y / h, 0, 1) : 0) + ')';
   toTop.classList.toggle('on', y > 700);
   if (!ticking) {
     ticking = true;
     requestAnimationFrame(() => {
-      if (y > lastY + 8 && y > 240) nav.classList.add('hide'); else if (y < lastY - 6) nav.classList.remove('hide');
+      if (y > lastY + 8 && y > 240) nav.classList.add('hide');
+      else if (y < lastY - 6) nav.classList.remove('hide');
       lastY = y; ticking = false;
     });
   }
@@ -1277,7 +1278,7 @@ addEventListener('scroll', () => {
   clearTimeout(blurT);
   blurT = setTimeout(() => document.body.classList.remove('scrolling'), 140);
 }, { passive: true });
-toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 if (!REDUCE) {
   const pars = $$('[data-par]');
@@ -1285,13 +1286,13 @@ if (!REDUCE) {
   addEventListener('scroll', () => {
     if (pT) return; pT = true;
     requestAnimationFrame(() => {
-      pars.forEach(el => { el.style.transform = `translate3d(0,${scrollY * parseFloat(el.dataset.par)}px,0)`; });
+      pars.forEach(el => { el.style.transform = 'translate3d(0,' + (scrollY * parseFloat(el.dataset.par)) + 'px,0)'; });
       pT = false;
     });
   }, { passive: true });
 }
 
-/* ================== TYPEWRITER ================== */
+/* ============ TYPEWRITER ============ */
 const roles = ['Web Developer', 'Serverless Engineer', 'UI Tinkerer', 'Open Source Builder'];
 const tw = $('#tw');
 if (tw) {
@@ -1309,7 +1310,7 @@ if (tw) {
   }
 }
 
-/* ================== SETTINGS ================== */
+/* ============ SETTINGS ============ */
 const ACCENTS = {
   violet:['#8b5cf6','#22d3ee'], cyan:['#22d3ee','#8b5cf6'],
   lime:['#a3e635','#22d3ee'], amber:['#fbbf24','#f472b6'], pink:['#f472b6','#8b5cf6']
@@ -1340,7 +1341,7 @@ swCursor.addEventListener('click', () => {
   curOn = !curOn;
   swCursor.classList.toggle('on', curOn);
   LS.set('z_cur', curOn);
-  cur.style.display = dot.style.display = curOn ? '' : 'none';
+  cur.style.display = curDot.style.display = curOn ? '' : 'none';
 });
 
 const swMotion = $('#swMotion');
@@ -1348,32 +1349,36 @@ swMotion.classList.toggle('on', !REDUCE);
 swMotion.addEventListener('click', () => {
   REDUCE = !REDUCE;
   swMotion.classList.toggle('on', !REDUCE);
-  document.body.classList.toggle('no-motion', REDUCE);
   LS.set('z_motion', !REDUCE);
   toast(REDUCE ? 'Animasi dimatikan' : 'Animasi diaktifkan');
 });
 if (LS.get('z_motion', true) === false) { REDUCE = true; swMotion.classList.remove('on'); }
 
-/* ================== COMMAND PALETTE ================== */
+/* ============ PALETTE ============ */
 const pal = $('#pal'), scrim = $('#scrim'), palInput = $('#palInput'), palList = $('#palList');
 let palItems = [], palSel = 0;
 
-function buildPalItems(){
-  const base = [
-    ...Object.entries(ROUTES).map(([k, v]) => ({ label:'Buka ' + v, hint:'halaman', act:() => go('#/' + k), ico:'<path d="M5 12h14M13 6l6 6-6 6"/>' })),
-    ...PROJECTS.map(p => ({ label:p.title, hint:p.kind, act:() => open(p.url), ico:'<rect x="4" y="5" width="16" height="14" rx="2"/>' })),
-    { label:'Beli akses premium', hint:'juikoprem', act:() => open('https://www.juikoprem.my.id'), ico:'<path d="m12 3 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 21l1.2-6.5L2.5 9.9 9.1 9z"/>' },
-    { label:'GitHub kyedeveloper', hint:'profil', act:() => open('https://github.com/kyedeveloper'), ico:'<circle cx="12" cy="12" r="9"/>' },
-    { label:'Salin API endpoint AM Premium', hint:'aksi', act:() => copy('https://www.juikoprem.my.id/api/inject'), ico:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5h10"/>' },
-    { label:'Ganti aksen warna', hint:'tampilan', act:() => { sheet.classList.add('on'); }, ico:'<circle cx="12" cy="12" r="9"/>' }
-  ];
-  return base;
+function go(h){ if (location.hash === h) return; history.pushState(null, '', h); route(h); }
+function openExt(u){ window.open(u, '_blank', 'noopener'); }
+async function copy(t){
+  try { await navigator.clipboard.writeText(t); toast('Disalin: ' + t, 'ok'); }
+  catch { toast('Gagal menyalin', 'bad'); }
 }
-const PAL_ALL = buildPalItems();
+
+const PAL_ALL = [
+  ...Object.keys(ROUTES).map(k => ({ label:'Buka ' + ROUTES[k], hint:'halaman', act:() => go('#/' + k), ico:'<path d="M5 12h14M13 6l6 6-6 6"/>' })),
+  ...PROJECTS.map(p => ({ label:p.title, hint:p.kind, act:() => openExt(p.url), ico:'<rect x="4" y="5" width="16" height="14" rx="2"/>' })),
+  { label:'Beli akses premium', hint:'juikoprem', act:() => openExt('https://www.juikoprem.my.id'), ico:'<path d="m12 3 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.8 6.1 21l1.2-6.5L2.5 9.9 9.1 9z"/>' },
+  { label:'GitHub kyedeveloper', hint:'profil', act:() => openExt('https://github.com/kyedeveloper'), ico:'<circle cx="12" cy="12" r="9"/>' },
+  { label:'Telegram @fiyaaw', hint:'kontak', act:() => openExt('https://t.me/fiyaaw'), ico:'<circle cx="12" cy="12" r="9"/>' },
+  { label:'Salin endpoint /api/inject', hint:'aksi', act:() => copy('https://www.juikoprem.my.id/api/inject'), ico:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5h10"/>' },
+  { label:'Ganti aksen warna', hint:'tampilan', act:() => sheet.classList.add('on'), ico:'<circle cx="12" cy="12" r="9"/>' }
+];
 
 function openPal(){
   pal.classList.add('on'); scrim.classList.add('on');
-  palInput.value = ''; palSel = 0; filterPal(''); setTimeout(() => palInput.focus(), 60);
+  palInput.value = ''; palSel = 0; filterPal('');
+  setTimeout(() => palInput.focus(), 60);
 }
 function closePal(){ pal.classList.remove('on'); scrim.classList.remove('on'); }
 function filterPal(q){
@@ -1383,22 +1388,24 @@ function filterPal(q){
 }
 function paintPal(){
   palList.innerHTML = palItems.length ? palItems.map((it, i) =>
-    `<div class="pal-item ${i === palSel ? 'sel' : ''}" data-i="${i}">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${it.ico}</svg>
-      <span>${esc(it.label)}</span><small>${esc(it.hint)}</small>
-    </div>`).join('') : '<div class="pal-empty">Nggak ketemu.</div>';
+    '<div class="pal-item ' + (i === palSel ? 'sel' : '') + '" data-i="' + i + '">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">' + it.ico + '</svg>' +
+    '<span>' + esc(it.label) + '</span><small>' + esc(it.hint) + '</small></div>').join('')
+    : '<div class="pal-empty">Nggak ketemu.</div>';
 }
 palInput.addEventListener('input', e => filterPal(e.target.value));
 palInput.addEventListener('keydown', e => {
   if (e.key === 'ArrowDown') { e.preventDefault(); palSel = Math.min(palSel + 1, palItems.length - 1); paintPal(); }
   else if (e.key === 'ArrowUp') { e.preventDefault(); palSel = Math.max(palSel - 1, 0); paintPal(); }
-  else if (e.key === 'Enter') { e.preventDefault(); palItems[palSel]?.act(); closePal(); }
+  else if (e.key === 'Enter') { e.preventDefault(); const it = palItems[palSel]; if (it) it.act(); closePal(); }
   else if (e.key === 'Escape') closePal();
 });
 palList.addEventListener('click', e => {
   const it = e.target.closest('.pal-item');
   if (!it) return;
-  palItems[+it.dataset.i]?.act(); closePal();
+  const item = palItems[+it.dataset.i];
+  if (item) item.act();
+  closePal();
 });
 scrim.addEventListener('click', closePal);
 $('#searchBtn').addEventListener('click', openPal);
@@ -1411,21 +1418,15 @@ addEventListener('keydown', e => {
   }
 });
 
-function go(h){ if (location.hash === h) return; history.pushState(null, '', h); route(h); }
-function open(u){ window.open(u, '_blank', 'noopener'); }
-async function copy(t){
-  try { await navigator.clipboard.writeText(t); toast('Disalin: ' + t, 'ok'); }
-  catch { toast('Gagal menyalin', 'bad'); }
-}
-
-/* ================== LIVE MONITOR ================== */
-let monTimer = null, monLive = true, spark = [], pausedLogs = false;
+/* ============ MONITOR ============ */
+let monTimer = null, monLive = true, spark = [];
+const chart = $('#chart');
+const ctx = chart.getContext('2d');
 
 function logLine(cls, msg){
   const box = $('#logs');
-  if (!box) return;
   const d = document.createElement('div');
-  d.innerHTML = `<span class="t">${now()}</span><span class="${cls}">${esc(msg)}</span>`;
+  d.innerHTML = '<span class="t">' + clock() + '</span><span class="' + cls + '">' + esc(msg) + '</span>';
   box.appendChild(d);
   while (box.children.length > 60) box.firstChild.remove();
   box.scrollTop = box.scrollHeight;
@@ -1440,23 +1441,24 @@ const LOGS = [
   ['i','deploy preview ready 12s'], ['ok','verifyPurchase 200 · am.full.sub.annual.19q4']
 ];
 
-const chart = $('#chart');
-const ctx = chart.getContext('2d');
 function sizeChart(){
   const r = chart.getBoundingClientRect();
   const dpr = Math.min(devicePixelRatio || 1, 2);
-  chart.width = r.width * dpr; chart.height = 120 * dpr;
+  chart.width = Math.max(r.width, 100) * dpr;
+  chart.height = 120 * dpr;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
+
 function drawChart(){
   const w = chart.getBoundingClientRect().width, h = 120;
   ctx.clearRect(0, 0, w, h);
-  const max = Math.max(...spark, 200);
+  if (!spark.length) return;
+  const max = Math.max.apply(null, spark.concat([200]));
   ctx.beginPath();
   spark.forEach((v, i) => {
     const x = (i / (spark.length - 1 || 1)) * w;
     const y = h - (v / max) * (h - 16) - 8;
-    i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
   });
   const g = ctx.createLinearGradient(0, 0, w, 0);
   g.addColorStop(0, getComputedStyle(document.documentElement).getPropertyValue('--c').trim() || '#22d3ee');
@@ -1475,8 +1477,7 @@ function pushMetric(){
   $('#mLat').textContent = lat;
   $('#mLatD').textContent = lat > 30 ? 'di atas baseline' : 'normal';
   $('#mLatD').className = 'delta ' + (lat > 30 ? 'down' : 'up');
-  const req = Math.round(rnd(18, 96));
-  $('#mReq').textContent = req;
+  $('#mReq').textContent = Math.round(rnd(18, 96));
   $('#mReqD').textContent = '+' + Math.round(rnd(2, 14)) + '% dari menit lalu';
   const err = rnd(.1, 1.9).toFixed(2);
   $('#mErr').textContent = err + '%';
@@ -1495,11 +1496,11 @@ async function loadHealth(){
     const r = await fetch(HEALTH, { cache: 'no-store' });
     const j = await r.json();
     const envs = Object.entries(j.env || {});
-    const on = envs.filter(([, v]) => v).length;
-    box.innerHTML = `<span style="color:var(--ok)">200 OK</span> · versi ${esc(j.version || '?')} · env ${on}/${envs.length} aktif`;
+    const on = envs.filter(e => e[1]).length;
+    box.innerHTML = '<span style="color:var(--ok)">200 OK</span> · versi ' + esc(j.version || '?') + ' · env ' + on + '/' + envs.length + ' aktif';
     logLine('ok', 'health probe 200 · v' + (j.version || '?'));
   } catch (e) {
-    box.innerHTML = `<span style="color:var(--bad)">tidak terjangkau</span> · ${esc(e.message)} — bisa jadi CORS atau offline`;
+    box.innerHTML = '<span style="color:var(--bad)">tidak terjangkau</span> · ' + esc(e.message);
     logLine('e', 'health probe gagal');
   }
 }
@@ -1511,11 +1512,11 @@ async function loadRepos(){
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const arr = await r.json();
     box.innerHTML = arr.map(x =>
-      `<div class="repo-row"><b>${esc(x.name)}</b><span>${esc(x.language || '—')} · ★ ${x.stargazers_count}</span></div>`
+      '<div class="repo-row"><b>' + esc(x.name) + '</b><span>' + esc(x.language || '—') + ' · ★ ' + x.stargazers_count + '</span></div>'
     ).join('');
     logLine('i', 'github api: ' + arr.length + ' repo dimuat');
   } catch (e) {
-    box.innerHTML = `<div class="repo-row"><span style="color:var(--dim)">Gagal ambil data GitHub (${esc(e.message)}) — rate limit publik 60/jam</span></div>`;
+    box.innerHTML = '<div class="repo-row"><span style="color:var(--dim)">Gagal ambil data GitHub (' + esc(e.message) + ') — rate limit publik 60/jam</span></div>';
   }
 }
 
@@ -1523,14 +1524,13 @@ function startMonitor(){
   if (monTimer) return;
   sizeChart();
   for (let i = 0; i < 60; i++) spark.push(rnd(9, 40));
-  drawChart();
-  pushMetric();
+  drawChart(); pushMetric();
   monTimer = setInterval(() => {
     if (!monLive) return;
     pushMetric();
     if (Math.random() > .45) {
-      const [c, m] = LOGS[Math.floor(Math.random() * LOGS.length)];
-      logLine(c, m);
+      const l = LOGS[Math.floor(Math.random() * LOGS.length)];
+      logLine(l[0], l[1]);
     }
   }, 1100);
   loadHealth(); loadRepos();
@@ -1539,43 +1539,38 @@ $('#liveToggle').addEventListener('click', e => {
   monLive = !monLive;
   e.currentTarget.classList.toggle('paused', !monLive);
   e.currentTarget.querySelector('span').textContent = monLive ? 'LIVE' : 'PAUSE';
-  toast(monLive ? 'Streaming dilanjutkan' : 'Streaming dijeda');
 });
 $('#recheck').addEventListener('click', loadHealth);
 addEventListener('resize', () => { if (current === 'live') { sizeChart(); drawChart(); } });
 
-/* ================== AI CHAT ================== */
+/* ============ AI ============ */
 const chatBox = $('#chat'), aiInput = $('#aiInput'), sendBtn = $('#aiSend');
 let messages = LS.get('z_chat', []);
 let streaming = false, controller = null;
-let key = LS.get('z_key', DEFAULT_KEY);
+let apiKey = LS.get('z_key', DEFAULT_KEY);
 
-$('#keyInput').value = key === DEFAULT_KEY ? '' : key;
-$('#keyInput').placeholder = key === DEFAULT_KEY ? 'pakai key bawaan' : 'sk-notrack-…';
-$('#keyStatus').textContent = key ? 'terpasang' : 'kosong';
-$('#keyStatus').className = key ? 'ok' : 'bad';
+$('#keyInput').value = apiKey === DEFAULT_KEY ? '' : apiKey;
+$('#keyStatus').textContent = apiKey ? 'terpasang' : 'kosong';
+$('#keyStatus').className = apiKey ? 'ok' : 'bad';
 $('#keySave').addEventListener('click', () => {
   const v = $('#keyInput').value.trim();
-  key = v || DEFAULT_KEY;
-  LS.set('z_key', key);
+  apiKey = v || DEFAULT_KEY;
+  LS.set('z_key', apiKey);
   $('#keyStatus').textContent = 'terpasang';
   $('#keyStatus').className = 'ok';
   toast('Key diperbarui', 'ok');
 });
-$('#temp').addEventListener('input', e => {
-  $('#tempVal').textContent = e.target.value;
-  LS.set('z_temp', e.target.value);
-});
+$('#temp').addEventListener('input', e => { $('#tempVal').textContent = e.target.value; LS.set('z_temp', e.target.value); });
 $('#temp').value = LS.get('z_temp', 0.8);
 $('#tempVal').textContent = $('#temp').value;
 
-function bubble(role, text, opts = {}){
+function bubble(role, text){
   const wrap = document.createElement('div');
   wrap.className = 'msg ' + (role === 'user' ? 'user' : 'ai');
   if (role === 'ai') {
-    wrap.innerHTML = `<div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5"/></svg></div><div class="bub"></div>`;
+    wrap.innerHTML = '<div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5"/></svg></div><div class="bub"></div>';
   } else {
-    wrap.innerHTML = `<div class="bub"></div>`;
+    wrap.innerHTML = '<div class="bub"></div>';
   }
   wrap.querySelector('.bub').textContent = text;
   chatBox.appendChild(wrap);
@@ -1592,8 +1587,8 @@ function renderMD(src){
     .replace(/(^|\W)\*([^*\n]+)\*(?=\W|$)/g, '$1<em>$2</em>')
     .replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
   for (const line of lines) {
-    if (line.trim().startsWith('```')) {
-      if (inCode) { out.push(`<pre><button class="copy-code">SALIN</button><code>${esc(buf.join('\n'))}</code></pre>`); buf = []; inCode = false; }
+    if (line.trim().slice(0, 3) === '```') {
+      if (inCode) { out.push('<pre><button class="copy-code">SALIN</button><code>' + esc(buf.join('\n')) + '</code></pre>'); buf = []; inCode = false; }
       else { inCode = true; if (list) { out.push('</ul>'); list = false; } }
       continue;
     }
@@ -1604,7 +1599,7 @@ function renderMD(src){
     if (/^\s*$/.test(line)) continue;
     out.push('<p>' + inline(line) + '</p>');
   }
-  if (inCode) out.push(`<pre><code>${esc(buf.join('\n'))}</code></pre>`);
+  if (inCode) out.push('<pre><code>' + esc(buf.join('\n')) + '</code></pre>');
   if (list) out.push('</ul>');
   return out.join('');
 }
@@ -1612,9 +1607,9 @@ function renderMD(src){
 function paintHistory(){
   chatBox.innerHTML = '';
   if (!messages.length) {
-    chatBox.innerHTML = `<div style="margin:auto;text-align:center;color:var(--dim);font-size:.84rem;max-width:320px;line-height:1.7">
-      <div style="font-family:'Space Grotesk';font-size:1.05rem;color:var(--ink);margin-bottom:6px;letter-spacing:-.02em">Mulai percakapan</div>
-      Semua pesan cuma disimpan di perangkat lo. Nggak dikirim ke mana pun selain API model.</div>`;
+    chatBox.innerHTML = '<div style="margin:auto;text-align:center;color:var(--dim);font-size:.84rem;max-width:320px;line-height:1.7">' +
+      '<div style="font-family:\'Space Grotesk\';font-size:1.05rem;color:var(--ink);margin-bottom:6px;letter-spacing:-.02em">Mulai percakapan</div>' +
+      'Semua pesan cuma disimpan di perangkat lo. Nggak dikirim ke mana pun selain API model.</div>';
   } else {
     messages.forEach((m, i) => {
       const b = bubble(m.role, m.content);
@@ -1629,18 +1624,18 @@ function paintHistory(){
 function addActions(node, idx){
   const bar = document.createElement('div');
   bar.className = 'msg-actions';
-  bar.innerHTML = `<button data-a="copy">SALIN</button><button data-a="regen">ULANG</button>`;
+  bar.innerHTML = '<button data-a="copy">SALIN</button><button data-a="regen">ULANG</button>';
   bar.addEventListener('click', async e => {
     const a = e.target.dataset.a;
-    if (a === 'copy') { await copy(messages[idx]?.content || ''); }
-    if (a === 'regen') { messages = messages.slice(0, idx); send(messages[messages.length - 1]?.content || '', true); }
+    if (a === 'copy') copy(messages[idx] ? messages[idx].content : '');
+    if (a === 'regen') { const last = messages[idx - 1]; messages = messages.slice(0, idx); if (last) send(last.content, true); }
   });
   node.appendChild(bar);
 }
 
 function bindCopyCode(){
   $$('.copy-code').forEach(b => b.addEventListener('click', () => {
-    copy(b.nextElementSibling.textContent);
+    if (b.nextElementSibling) copy(b.nextElementSibling.textContent);
   }));
 }
 
@@ -1654,7 +1649,7 @@ aiInput.addEventListener('keydown', e => {
 });
 
 async function send(forced, isRegen){
-  const text = forced ?? aiInput.value.trim();
+  const text = forced !== undefined ? forced : aiInput.value.trim();
   if (!text || streaming) return;
 
   if (!isRegen) { messages.push({ role: 'user', content: text }); aiInput.value = ''; autosize(); }
@@ -1668,8 +1663,8 @@ async function send(forced, isRegen){
 
   const holder = document.createElement('div');
   holder.className = 'msg ai';
-  holder.innerHTML = `<div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5"/></svg></div>
-    <div class="bub"><details class="think" open><summary><span class="spin"></span>Menalar…</summary><div class="steps"></div></details><div class="body"></div></div>`;
+  holder.innerHTML = '<div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5"/></svg></div>' +
+    '<div class="bub"><details class="think" open><summary><span class="spin"></span>Menalar…</summary><div class="steps"></div></details><div class="body"></div></div>';
   chatBox.appendChild(holder);
   chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -1679,7 +1674,7 @@ async function send(forced, isRegen){
   const t0 = performance.now();
 
   const steps = [
-    `membaca permintaan (${text.split(/\s+/).length} kata)`,
+    'membaca permintaan (' + text.split(/\s+/).length + ' kata)',
     'memilih struktur jawaban',
     'menyiapkan konteks & istilah teknis',
     'menulis'
@@ -1699,18 +1694,18 @@ async function send(forced, isRegen){
     const res = await fetch(AI_BASE + '/chat/completions', {
       method: 'POST',
       signal: controller.signal,
-      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + apiKey },
       body: JSON.stringify({
         model: AI_MODEL,
         stream: true,
         temperature: parseFloat($('#temp').value),
-        messages: [{ role: 'system', content: SYS }, ...messages]
+        messages: [{ role: 'system', content: SYS }].concat(messages)
       })
     });
 
     if (!res.ok) {
       const t = await res.text();
-      throw new Error(`HTTP ${res.status} — ${t.slice(0, 160)}`);
+      throw new Error('HTTP ' + res.status + ' — ' + t.slice(0, 160));
     }
 
     const reader = res.body.getReader();
@@ -1718,31 +1713,35 @@ async function send(forced, isRegen){
     let carry = '';
 
     while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      carry += dec.decode(value, { stream: true });
+      const chunk = await reader.read();
+      if (chunk.done) break;
+      carry += dec.decode(chunk.value, { stream: true });
       const parts = carry.split('\n\n');
       carry = parts.pop();
       for (const part of parts) {
-        const line = part.split('\n').find(l => l.startsWith('data:'));
+        const line = part.split('\n').filter(l => l.indexOf('data:') === 0)[0];
         if (!line) continue;
         const data = line.slice(5).trim();
         if (data === '[DONE]') continue;
-        try {
-          const j = JSON.parse(data);
-          const delta = j.choices?.[0]?.delta?.content || '';
-          if (!delta) continue;
-          if (!full) {
-            clearInterval(stepTimer);
-            steps.forEach((s, i) => { if (!stepsEl.children[i]) { const d = document.createElement('div'); d.textContent = s; stepsEl.appendChild(d); requestAnimationFrame(() => d.classList.add('in')); } });
-            thinkEl.classList.add('done');
-            thinkEl.querySelector('summary').innerHTML = `<span class="spin"></span>Berpikir ${((performance.now() - t0) / 1000).toFixed(1)}s`;
-            thinkEl.open = false;
+        let j;
+        try { j = JSON.parse(data); } catch { continue; }
+        const delta = (j.choices && j.choices[0] && j.choices[0].delta && j.choices[0].delta.content) || '';
+        if (!delta) continue;
+        if (!full) {
+          clearInterval(stepTimer);
+          while (stepsEl.children.length < steps.length) {
+            const d = document.createElement('div');
+            d.textContent = steps[stepsEl.children.length];
+            stepsEl.appendChild(d);
+            requestAnimationFrame(() => d.classList.add('in'));
           }
-          full += delta;
-          bodyEl.innerHTML = renderMD(full) + '<span class="cursor-blink"></span>';
-          chatBox.scrollTop = chatBox.scrollHeight;
-        } catch {}
+          thinkEl.classList.add('done');
+          thinkEl.querySelector('summary').innerHTML = '<span class="spin"></span>Berpikir ' + ((performance.now() - t0) / 1000).toFixed(1) + 's';
+          thinkEl.open = false;
+        }
+        full += delta;
+        bodyEl.innerHTML = renderMD(full) + '<span class="cursor-blink"></span>';
+        chatBox.scrollTop = chatBox.scrollHeight;
       }
     }
     if (!full) throw new Error('Balasan kosong.');
@@ -1757,23 +1756,22 @@ async function send(forced, isRegen){
     clearInterval(stepTimer);
     const aborted = err.name === 'AbortError';
     thinkEl.classList.add('done');
-    thinkEl.querySelector('summary').innerHTML = `<span class="spin"></span>${aborted ? 'Dihentikan' : 'Gagal'}`;
+    thinkEl.querySelector('summary').innerHTML = '<span class="spin"></span>' + (aborted ? 'Dihentikan' : 'Gagal');
     thinkEl.open = false;
     bodyEl.innerHTML = full
-      ? renderMD(full) + `<p style="color:var(--bad);font-size:.76rem">— dihentikan.</p>`
-      : `<p style="color:var(--bad);font-size:.82rem">${esc(err.message)}</p>
-         <p style="font-size:.74rem;color:var(--dim)">Kalau errornya CORS/network, buka DevTools &gt; Console buat lihat detail, atau ganti API key di panel kanan.</p>`;
+      ? renderMD(full) + '<p style="color:var(--bad);font-size:.76rem">— dihentikan.</p>'
+      : '<p style="color:var(--bad);font-size:.82rem">' + esc(err.message) + '</p>' +
+        '<p style="font-size:.74rem;color:var(--dim)">Kalau errornya CORS/network, cek Console, atau ganti API key di panel kanan.</p>';
     if (full) { messages.push({ role: 'ai', content: full }); LS.set('z_chat', messages.slice(-40)); }
   } finally {
-    streaming = false;
-    controller = null;
+    streaming = false; controller = null;
     sendBtn.classList.remove('stop');
     sendBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 }
 
-sendBtn.addEventListener('click', () => { if (streaming) controller?.abort(); else send(); });
+sendBtn.addEventListener('click', () => { if (streaming) { if (controller) controller.abort(); } else send(); });
 $('#aiClear').addEventListener('click', () => {
   if (!messages.length) return;
   messages = []; LS.del('z_chat'); paintHistory(); toast('Riwayat dihapus');
@@ -1786,10 +1784,11 @@ $('#suggest').addEventListener('click', e => {
 paintHistory();
 bindCopyCode();
 
-/* ================== INIT ================== */
+/* ============ INIT ============ */
 $('#yr').textContent = new Date().getFullYear();
 renderChrome('home');
 addEventListener('resize', setTabInd);
+})();
 </script>
 </body>
-  </html>
+        </html>
