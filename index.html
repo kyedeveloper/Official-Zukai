@@ -1028,17 +1028,17 @@ const rnd = (a, b) => a + Math.random() * (b - a);
 const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
 
 function toast(msg, type = ''){
+  const box = $('#toasts');
+  if (!box) return;
   const el = document.createElement('div');
   el.className = 'toast ' + type;
   el.textContent = msg;
-  const box = $('#toasts');
-  if (!box) return;
   box.appendChild(el);
   setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(10px)'; }, 2200);
   setTimeout(() => el.remove(), 2700);
 }
 
-/* ============ OBSERVERS (dideklarasikan lebih awal) ============ */
+/* ============ OBSERVERS ============ */
 let io = null, cio = null;
 
 function observeReveals(){
@@ -1569,7 +1569,14 @@ addEventListener('resize', () => { if (current === 'live') { sizeChart(); drawCh
 
 /* ============ AI ============ */
 const chatBox = $('#chat'), aiInput = $('#aiInput'), sendBtn = $('#aiSend');
-let messages = LS.get('z_chat', []);
+
+/* Normalisasi role: API OpenAI-compatible cuma kenal user / assistant / system */
+function normRole(r){ return r === 'user' ? 'user' : 'assistant'; }
+let messages = (LS.get('z_chat', []) || [])
+  .filter(m => m && typeof m.content === 'string' && m.content.trim())
+  .map(m => ({ role: normRole(m.role), content: m.content }))
+  .slice(-40);
+
 let streaming = false, controller = null;
 let apiKey = LS.get('z_key', DEFAULT_KEY);
 
@@ -1597,10 +1604,10 @@ if (tempEl) {
 function bubble(role, text){
   const wrap = document.createElement('div');
   wrap.className = 'msg ' + (role === 'user' ? 'user' : 'ai');
-  if (role === 'ai') {
-    wrap.innerHTML = '<div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5"/></svg></div><div class="bub"></div>';
-  } else {
+  if (role === 'user') {
     wrap.innerHTML = '<div class="bub"></div>';
+  } else {
+    wrap.innerHTML = '<div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5"/></svg></div><div class="bub"></div>';
   }
   wrap.querySelector('.bub').textContent = text;
   chatBox.appendChild(wrap);
@@ -1644,7 +1651,7 @@ function paintHistory(){
   } else {
     messages.forEach((m, i) => {
       const b = bubble(m.role, m.content);
-      if (m.role === 'ai') { b.querySelector('.bub').innerHTML = renderMD(m.content); addActions(b, i); }
+      if (m.role !== 'user') { b.querySelector('.bub').innerHTML = renderMD(m.content); addActions(b, i); }
     });
     chatBox.scrollTop = chatBox.scrollHeight;
   }
@@ -1728,6 +1735,12 @@ async function send(forced, isRegen){
 
   let full = '';
   try {
+    /* hanya kirim histori yang valid + batasi panjang */
+    const payload = messages
+      .filter(m => m.role === 'user' || m.role === 'assistant')
+      .slice(-20)
+      .map(m => ({ role: m.role, content: m.content }));
+
     const res = await fetch(AI_BASE + '/chat/completions', {
       method: 'POST',
       signal: controller.signal,
@@ -1736,13 +1749,13 @@ async function send(forced, isRegen){
         model: AI_MODEL,
         stream: true,
         temperature: parseFloat(tempEl ? tempEl.value : 0.8),
-        messages: [{ role: 'system', content: SYS }].concat(messages)
+        messages: [{ role: 'system', content: SYS }].concat(payload)
       })
     });
 
     if (!res.ok) {
       const t = await res.text();
-      throw new Error('HTTP ' + res.status + ' — ' + t.slice(0, 160));
+      throw new Error('HTTP ' + res.status + ' — ' + t.slice(0, 200));
     }
 
     const reader = res.body.getReader();
@@ -1784,7 +1797,7 @@ async function send(forced, isRegen){
     if (!full) throw new Error('Balasan kosong.');
     clearInterval(stepTimer);
     bodyEl.innerHTML = renderMD(full);
-    messages.push({ role: 'ai', content: full });
+    messages.push({ role: 'assistant', content: full });
     LS.set('z_chat', messages.slice(-40));
     const hc = $('#histCount'); if (hc) hc.textContent = messages.length;
     bindCopyCode();
@@ -1799,7 +1812,7 @@ async function send(forced, isRegen){
       ? renderMD(full) + '<p style="color:var(--bad);font-size:.76rem">— dihentikan.</p>'
       : '<p style="color:var(--bad);font-size:.82rem">' + esc(err.message) + '</p>' +
         '<p style="font-size:.74rem;color:var(--dim)">Kalau errornya CORS/network, cek Console, atau ganti API key di panel kanan.</p>';
-    if (full) { messages.push({ role: 'ai', content: full }); LS.set('z_chat', messages.slice(-40)); }
+    if (full) { messages.push({ role: 'assistant', content: full }); LS.set('z_chat', messages.slice(-40)); }
   } finally {
     streaming = false; controller = null;
     if (sendBtn) {
@@ -1833,4 +1846,4 @@ addEventListener('resize', setTabInd);
 })();
 </script>
 </body>
-  </html>
+</html>
