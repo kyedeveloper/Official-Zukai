@@ -142,6 +142,10 @@ body.cur-hot .cur-dot{opacity:.35}
 .rv{opacity:0;transform:translateY(34px) scale(.988);filter:blur(9px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
 .rv.in{opacity:1;transform:none;filter:blur(0)}
 
+/* split words (GSAP) */
+.m-split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.m-split .wi{display:inline-block;will-change:transform}
+
 .hero{padding:clamp(126px,15vh,168px) 0 clamp(40px,6vh,70px);min-height:calc(100svh - 20px);display:flex;align-items:center}
 .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(24px,4vw,54px);align-items:center;width:100%}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:30px}}
@@ -235,7 +239,7 @@ body.scrolling .track{filter:blur(.5px)}
 .card.full{grid-column:span 6}
 @media(max-width:900px){.card,.card.wide{grid-column:span 3}}
 @media(max-width:640px){.card,.card.wide,.card.full{grid-column:span 6}}
-.card-in{padding:clamp(18px,2.5vw,28px);display:flex;flex-direction:column;height:100%;gap:14px}
+.card-in{padding:clamp(18px,2.5vw,28px);display:flex;flex-direction:column;height:100%;gap:14px;will-change:transform}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .card-ico{width:42px;height:42px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line);flex:none}
 .card-ico svg{width:18px;height:18px}
@@ -299,26 +303,30 @@ canvas{width:100%;display:block;border-radius:var(--r-sm)}
 .repo-row b{font-weight:600}
 .repo-row span{color:var(--dim);font-size:.7rem;margin-left:auto;white-space:nowrap}
 
-.ai-shell{display:grid;grid-template-columns:1fr 300px;gap:13px;align-items:start}
-@media(max-width:940px){.ai-shell{grid-template-columns:1fr}}
-.ai-main{display:flex;flex-direction:column;border-radius:var(--r-xl);overflow:hidden;min-height:min(66vh,620px)}
-.ai-top{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.035);flex-wrap:wrap}
+/* ================= AI FULLSCREEN ================= */
+body.ai-mode{overflow:hidden}
+body.ai-mode footer{display:none}
+#v-ai.on{position:fixed;inset:0;z-index:5;display:flex;padding:calc(96px + env(safe-area-inset-top)) var(--gutter) 12px;animation:none}
+@media(max-width:860px){#v-ai.on{padding-bottom:calc(80px + env(safe-area-inset-bottom))}}
+.ai-shell{flex:1;display:flex;justify-content:center;min-height:0;width:100%}
+.ai-main{position:relative;flex:1;max-width:960px;display:flex;flex-direction:column;min-height:0;border-radius:var(--r-xl);overflow:hidden}
+.ai-top{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.035);flex:none}
 .ai-ava{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,var(--v),var(--c));color:#08090d;flex:none;box-shadow:0 0 20px -4px rgba(139,92,246,.9)}
 .ai-ava svg{width:15px;height:15px}
-.ai-top b{font-size:.86rem;font-family:'Space Grotesk'}
-.ai-top .sub{font-size:.66rem;color:var(--dim);font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+.ai-top b{font-size:.86rem;font-family:'Space Grotesk';display:block;line-height:1.2}
+.ai-top .sub{font-size:.63rem;color:var(--dim);font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
 .ai-top .spacer{margin-left:auto}
-.chat{flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
-.chat::-webkit-scrollbar{width:6px} .chat::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:3px}
+.chat{flex:1;min-height:0;overflow-y:auto;padding:22px 18px;display:flex;flex-direction:column;gap:15px;scroll-behavior:smooth;overscroll-behavior:contain}
+.chat::-webkit-scrollbar{width:7px} .chat::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:4px}
 .msg{display:flex;gap:10px;max-width:100%;animation:msgIn .45s var(--ease)}
 @keyframes msgIn{from{opacity:0;transform:translateY(10px);filter:blur(5px)}}
-.msg .bub{padding:13px 16px;border-radius:var(--r-lg);font-size:.88rem;line-height:1.68;max-width:min(100%,640px);overflow-wrap:anywhere}
+.msg .bub{padding:13px 16px;border-radius:var(--r-lg);font-size:.9rem;line-height:1.7;max-width:min(100%,700px);overflow-wrap:anywhere}
 .msg.user{justify-content:flex-end}
 .msg.user .bub{background:linear-gradient(140deg,rgba(139,92,246,.32),rgba(109,40,217,.2));border:1px solid rgba(167,139,250,.4);border-bottom-right-radius:8px}
 .msg.ai .bub{background:rgba(255,255,255,.05);border:1px solid var(--line);border-bottom-left-radius:8px}
 .msg.ai .ava{width:26px;height:26px;border-radius:50%;background:linear-gradient(140deg,var(--v),var(--c));display:grid;place-items:center;flex:none;margin-top:2px;color:#08090d}
 .msg.ai .ava svg{width:13px;height:13px}
-.bub h4{font-family:'Space Grotesk';font-size:.95rem;margin:10px 0 6px;letter-spacing:-.02em}
+.bub h4{font-family:'Space Grotesk';font-size:.98rem;margin:10px 0 6px;letter-spacing:-.02em}
 .bub p{margin:0 0 9px} .bub p:last-child{margin-bottom:0}
 .bub ul{padding-left:18px;margin:0 0 9px} .bub li{margin-bottom:3px}
 .bub pre{position:relative;background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:var(--r-sm);padding:12px 13px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.74rem;line-height:1.6;margin:9px 0}
@@ -338,8 +346,8 @@ canvas{width:100%;display:block;border-radius:var(--r-sm)}
 .msg-actions{display:flex;gap:5px;margin-top:8px}
 .msg-actions button{font-size:.63rem;font-family:'JetBrains Mono',monospace;letter-spacing:.07em;padding:4px 9px;border-radius:var(--r-full);border:1px solid var(--line);color:var(--dim);transition:.2s}
 .msg-actions button:hover{color:var(--ink);border-color:var(--line-strong);background:var(--surface)}
-.ai-compose{border-top:1px solid var(--line);padding:11px;background:rgba(255,255,255,.03);display:flex;gap:8px;align-items:flex-end}
-.ai-compose textarea{flex:1;resize:none;background:transparent;border:0;color:var(--ink);font-family:inherit;font-size:.88rem;line-height:1.55;padding:8px 4px;max-height:150px;min-height:40px}
+.ai-compose{flex:none;border-top:1px solid var(--line);padding:11px 12px max(11px, env(safe-area-inset-bottom));background:rgba(255,255,255,.03);display:flex;gap:8px;align-items:flex-end}
+.ai-compose textarea{flex:1;resize:none;background:transparent;border:0;color:var(--ink);font-family:inherit;font-size:.9rem;line-height:1.55;padding:9px 4px;max-height:170px;min-height:40px}
 .ai-compose textarea:focus{outline:none}
 .ai-compose textarea::placeholder{color:var(--dim)}
 .send{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,#a78bfa,#7c3aed);color:#fff;flex:none;transition:.3s var(--spring)}
@@ -347,11 +355,25 @@ canvas{width:100%;display:block;border-radius:var(--r-sm)}
 .send:disabled{opacity:.45;transform:none}
 .send svg{width:16px;height:16px}
 .send.stop{background:linear-gradient(140deg,#fb7185,#e11d48)}
-.suggest{display:flex;gap:7px;flex-wrap:wrap;padding:0 16px 12px}
-.suggest button{font-size:.72rem;padding:7px 12px;border-radius:var(--r-full);border:1px solid var(--line);color:var(--muted);transition:.25s;text-align:left}
-.suggest button:hover{color:var(--ink);border-color:var(--line-strong);background:var(--surface)}
-.ai-side{display:grid;gap:11px}
-.side-card{padding:16px;border-radius:var(--r-lg)}
+/* empty state */
+.ai-empty{margin:auto;text-align:center;max-width:520px;padding:10px}
+.ai-empty .big{width:54px;height:54px;border-radius:18px;margin:0 auto 16px;display:grid;place-items:center;background:linear-gradient(140deg,rgba(139,92,246,.35),rgba(34,211,238,.25));border:1px solid var(--line-strong);color:#fff}
+.ai-empty .big svg{width:24px;height:24px}
+.ai-empty h3{font-size:1.3rem;margin-bottom:8px;letter-spacing:-.03em}
+.ai-empty p{color:var(--muted);font-size:.85rem;margin-bottom:20px}
+.ai-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left}
+@media(max-width:560px){.ai-cards{grid-template-columns:1fr}}
+.ai-cards button{padding:13px 14px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--surface);font-size:.79rem;color:var(--muted);transition:.28s var(--ease);text-align:left;line-height:1.45}
+.ai-cards button:hover{color:var(--ink);border-color:var(--line-strong);background:var(--surface-2);transform:translateY(-2px)}
+.ai-cards button b{display:block;color:var(--ink);font-size:.8rem;margin-bottom:2px}
+/* drawer */
+.ai-side{position:fixed;top:0;right:0;bottom:0;z-index:965;width:min(90vw,350px);background:rgba(9,11,16,.96);-webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px);border-left:1px solid var(--line-strong);transform:translateX(103%);transition:transform .45s var(--ease);padding:calc(18px + env(safe-area-inset-top)) 16px 24px;overflow-y:auto;display:grid;gap:12px;align-content:start;box-shadow:-30px 0 80px -40px #000}
+.ai-side.on{transform:none}
+.ai-side-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.ai-side-head b{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.ai-scrim{position:fixed;inset:0;z-index:960;background:rgba(3,4,8,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:.3s}
+.ai-scrim.on{opacity:1;visibility:visible}
+.side-card{padding:15px;border-radius:var(--r-lg);border:1px solid var(--line);background:var(--surface)}
 .side-card h5{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0 0 10px;font-weight:500}
 .kv{display:flex;justify-content:space-between;gap:10px;font-size:.74rem;padding:5px 0;border-bottom:1px dashed rgba(255,255,255,.07)}
 .kv:last-child{border:0}
@@ -359,7 +381,7 @@ canvas{width:100%;display:block;border-radius:var(--r-sm)}
 .kv b.ok{color:var(--ok)} .kv b.bad{color:var(--bad)}
 .range{width:100%;accent-color:var(--v)}
 .keyrow{display:flex;gap:6px;margin-top:9px}
-.keyrow input{flex:1;min-width:0;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:var(--r-xs);padding:7px 9px;color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:.64rem}
+.keyrow input{flex:1;min-width:0;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:var(--r-xs);padding:7px 9px;color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:.64rem}
 .keyrow input:focus{outline:none;border-color:var(--line-strong)}
 .keyrow button{padding:0 11px;border-radius:var(--r-xs);border:1px solid var(--line);color:var(--muted);font-size:.66rem}
 .keyrow button:hover{color:var(--ink);border-color:var(--line-strong)}
@@ -693,7 +715,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
 
       <div class="panel glass rv">
         <div class="panel-head"><h4>Log stream</h4><span class="mono" style="font-size:.6rem;color:var(--dim)">tail -f</span></div>
-        <div class="logs" id="logs"></div>
+        <div class="logs" id="logs" data-lenis-prevent></div>
       </div>
 
       <div class="panel glass rv">
@@ -703,66 +725,68 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
     </div>
   </section>
 
+  <!-- ============ AI (FULLSCREEN) ============ -->
   <section class="view" id="v-ai" data-title="AI">
-    <div class="wrap page">
-      <div class="sec-head rv">
-        <div class="eyebrow"><span class="pip"></span><span class="mono">05 — Asisten</span></div>
-        <h2 class="h-sec">Tanya <em>Zukai AI</em>.</h2>
-        <p class="lede">Model <code>notrack-uncensored</code> lewat API OpenAI-compatible. Nggak nge-refuse, nggak muter-muter. Riwayat cuma disimpan di perangkat lo.</p>
-      </div>
-
-      <div class="ai-shell rv">
-        <div class="ai-main glass">
-          <div class="ai-top">
-            <div class="ai-ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5"/></svg></div>
-            <div>
-              <b>Zukai AI</b>
-              <div class="sub">notrack-uncensored · 64K ctx</div>
-            </div>
-            <div class="spacer"></div>
-            <button class="icon-btn" id="aiClear" aria-label="Bersihkan chat" title="Bersihkan chat">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
-            </button>
+    <div class="ai-shell">
+      <div class="ai-main glass">
+        <div class="ai-top">
+          <div class="ai-ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5"/></svg></div>
+          <div>
+            <b>Zukai AI</b>
+            <div class="sub">notrack-uncensored · 64K ctx</div>
           </div>
-
-          <div class="chat" id="chat"></div>
-          <div class="suggest" id="suggest">
-            <button>Jelasin arsitektur AM Premium</button>
-            <button>Bikin regex validasi email</button>
-            <button>Ide fitur buat ZukaiTemp</button>
-            <button>Review kode ini: <code>fetch(url)</code></button>
-          </div>
-          <div class="ai-compose">
-            <textarea id="aiInput" rows="1" placeholder="Tulis pesan… (Enter kirim, Shift+Enter baris baru)"></textarea>
-            <button class="send" id="aiSend" aria-label="Kirim">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
-            </button>
-          </div>
+          <div class="spacer"></div>
+          <button class="icon-btn" id="aiNew" aria-label="Percakapan baru" title="Percakapan baru">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <button class="icon-btn" id="aiPanel" aria-label="Pengaturan" title="Pengaturan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="8" cy="18" r="2" fill="currentColor" stroke="none"/></svg>
+          </button>
         </div>
 
-        <aside class="ai-side">
-          <div class="side-card glass">
-            <h5>Status</h5>
-            <div class="kv"><span>Model</span><b>notrack-uncensored</b></div>
-            <div class="kv"><span>Key</span><b id="keyStatus">—</b></div>
-            <div class="kv"><span>Streaming</span><b class="ok">aktif</b></div>
-            <div class="kv"><span>Riwayat</span><b id="histCount">0</b></div>
-          </div>
-          <div class="side-card glass">
-            <h5>Kreativitas</h5>
-            <input class="range" id="temp" type="range" min="0" max="1.4" step="0.1" value="0.8" />
-            <div class="kv" style="border:0;margin-top:6px"><span>temperature</span><b id="tempVal">0.8</b></div>
-          </div>
-          <div class="side-card glass">
-            <h5>API key</h5>
-            <div class="keyrow">
-              <input id="keyInput" type="password" placeholder="sk-notrack-…" />
-              <button id="keySave">Simpan</button>
-            </div>
-            <p class="ai-warn">Key disimpan di localStorage. Kalau mau aman, pindahin ke serverless proxy sendiri.</p>
-          </div>
-        </aside>
+        <div class="chat" id="chat" data-lenis-prevent></div>
+
+        <div class="ai-compose">
+          <textarea id="aiInput" rows="1" placeholder="Tulis pesan… (Enter kirim, Shift+Enter baris baru)"></textarea>
+          <button class="send" id="aiSend" aria-label="Kirim">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
       </div>
+
+      <aside class="ai-side" id="aiSide">
+        <div class="ai-side-head">
+          <b>Pengaturan</b>
+          <button class="icon-btn" id="aiPanelClose" aria-label="Tutup">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <div class="side-card">
+          <h5>Status</h5>
+          <div class="kv"><span>Model</span><b>notrack-uncensored</b></div>
+          <div class="kv"><span>Key</span><b id="keyStatus">—</b></div>
+          <div class="kv"><span>Streaming</span><b class="ok">aktif</b></div>
+          <div class="kv"><span>Pesan</span><b id="histCount">0</b></div>
+        </div>
+        <div class="side-card">
+          <h5>Kreativitas</h5>
+          <input class="range" id="temp" type="range" min="0" max="1.4" step="0.1" value="0.8" />
+          <div class="kv" style="border:0;margin-top:6px"><span>temperature</span><b id="tempVal">0.8</b></div>
+        </div>
+        <div class="side-card">
+          <h5>API key</h5>
+          <div class="keyrow">
+            <input id="keyInput" type="password" placeholder="sk-notrack-…" />
+            <button id="keySave">Simpan</button>
+          </div>
+          <p class="ai-warn">Key disimpan di localStorage. Kalau mau aman, pindahin ke serverless proxy sendiri.</p>
+        </div>
+        <div class="side-card">
+          <h5>Aksi</h5>
+          <button class="card-link" id="aiClear" style="margin:0;width:100%;justify-content:center;padding:9px 12px">Hapus riwayat</button>
+        </div>
+      </aside>
+      <div class="ai-scrim" id="aiScrim"></div>
     </div>
   </section>
 
@@ -874,7 +898,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
       <input id="palInput" placeholder="Cari halaman, proyek, atau aksi…" autocomplete="off" />
       <kbd>ESC</kbd>
     </div>
-    <div class="pal-list" id="palList"></div>
+    <div class="pal-list" id="palList" data-lenis-prevent></div>
     <div class="pal-foot"><span>↑↓ pilih</span><span>↵ buka</span><span>esc tutup</span></div>
   </div>
 </div>
@@ -894,6 +918,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);margin-top:c
 
 <div class="toasts" id="toasts"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.js"></script>
 <script>
 (() => {
 'use strict';
@@ -1027,6 +1055,12 @@ const clock = () => { const d = new Date(); return pad(d.getHours()) + ':' + pad
 const rnd = (a, b) => a + Math.random() * (b - a);
 const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
 
+const HAS_GSAP = !!(window.gsap && window.ScrollTrigger);
+const HAS_MOTION = !!window.Motion;
+const HAS_LENIS = !!window.Lenis;
+
+if (HAS_GSAP) gsap.registerPlugin(ScrollTrigger);
+
 function toast(msg, type = ''){
   const box = $('#toasts');
   if (!box) return;
@@ -1036,6 +1070,76 @@ function toast(msg, type = ''){
   box.appendChild(el);
   setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(10px)'; }, 2200);
   setTimeout(() => el.remove(), 2700);
+}
+
+/* ============ LENIS ============ */
+let lenis = null;
+if (HAS_LENIS && !REDUCE) {
+  try {
+    lenis = new Lenis({ duration: 1.05, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 1.7 });
+    if (HAS_GSAP) {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(0);
+    }
+  } catch (e) { console.warn('Lenis gagal', e); lenis = null; }
+}
+function scrollTopNow(){
+  if (lenis) lenis.scrollTo(0, { immediate: true });
+  else window.scrollTo(0, 0);
+}
+
+/* ============ GSAP: judul per kata ============ */
+function splitHeadings(root){
+  if (!HAS_GSAP || REDUCE || !root) return;
+  $$('.h-sec', root).forEach(h => {
+    if (h.dataset.split) return;
+    h.dataset.split = '1';
+    h.classList.add('m-split');
+    (function walk(node){
+      Array.from(node.childNodes).forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(t => {
+            if (!t) return;
+            if (!t.trim()) { frag.appendChild(document.createTextNode(' ')); return; }
+            const w = document.createElement('span'); w.className = 'w';
+            const i = document.createElement('span'); i.className = 'wi'; i.textContent = t;
+            w.appendChild(i); frag.appendChild(w);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && !n.classList.contains('w')) walk(n);
+      });
+    })(h);
+
+    gsap.fromTo(h.querySelectorAll('.wi'),
+      { yPercent: 115, opacity: 0 },
+      { yPercent: 0, opacity: 1, duration: .85, stagger: .038, ease: 'expo.out',
+        scrollTrigger: { trigger: h, start: 'top 92%', once: true } });
+  });
+}
+
+/* ============ MOTION: kartu ============ */
+function animateCards(root){
+  if (!HAS_MOTION || REDUCE || !root) return;
+  const M = window.Motion;
+  $$('.card:not([data-m-bound])', root).forEach(card => {
+    card.dataset.mBound = '1';
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(34px) scale(.965)';
+    const inner = card.querySelector('.card-in');
+    M.inView(card, () => {
+      M.animate(card, { opacity: 1, y: 0, scale: 1 }, { duration: .7, ease: [.22, 1, .36, 1] })
+        .finished.then(() => { card.style.transform = ''; card.style.opacity = ''; });
+      if (inner) {
+        M.hover(inner,
+          () => M.animate(inner, { y: -7, scale: 1.012 }, { type: 'spring', stiffness: 340, damping: 22 }),
+          () => M.animate(inner, { y: 0, scale: 1 }, { type: 'spring', stiffness: 340, damping: 26 }));
+      }
+    }, { margin: '-6% 0px -6% 0px' });
+  });
 }
 
 /* ============ OBSERVERS ============ */
@@ -1110,12 +1214,24 @@ function swap(name){
   $$('.view').forEach(v => v.classList.remove('on'));
   const v = $('#v-' + name);
   if (v) v.classList.add('on');
+  document.body.classList.toggle('ai-mode', name === 'ai');
+
+  if (name === 'ai') { if (lenis) lenis.stop(); }
+  else if (lenis) lenis.start();
+
   renderChrome(name);
   observeReveals();
   bindTilt();
+  scrollTopNow();
+
+  if (v) { splitHeadings(v); animateCards(v); }
+
   if (name === 'live') startMonitor();
-  if (name === 'ai') setTimeout(() => { const i = $('#aiInput'); if (i) i.focus(); }, 400);
-  window.scrollTo(0, 0);
+  if (name === 'ai') {
+    closePanel();
+    setTimeout(() => { const i = $('#aiInput'); if (i) i.focus(); }, 420);
+  }
+  if (HAS_GSAP) setTimeout(() => ScrollTrigger.refresh(), 120);
 }
 
 function route(hash, animate){
@@ -1153,7 +1269,7 @@ document.addEventListener('click', e => {
 
 /* ============ CARDS ============ */
 function cardHTML(p, idx){
-  return '<article class="card ' + (p.cls || '') + ' glass sheen rv" data-tilt>' +
+  return '<article class="card ' + (p.cls || '') + ' glass sheen" data-tilt>' +
     '<div class="card-in"><div class="card-top">' +
     '<div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">' + (P_ICON[p.icon] || '') + '</svg></div>' +
     '<div style="display:flex;gap:5px">' + p.tags.map(t => '<span class="tag ' + t[0] + '">' + esc(t[1]) + '</span>').join('') + '</div>' +
@@ -1180,7 +1296,7 @@ function paintWork(){
   grid.innerHTML = list.length
     ? list.map(cardHTML).join('')
     : '<div class="empty" style="grid-column:1/-1">Nggak ada proyek yang cocok. Coba kata kunci lain.</div>';
-  observeReveals(); bindTilt();
+  observeReveals(); bindTilt(); animateCards(grid);
 }
 paintWork();
 
@@ -1278,7 +1394,10 @@ addEventListener('scroll', () => {
   clearTimeout(blurT);
   blurT = setTimeout(() => document.body.classList.remove('scrolling'), 140);
 }, { passive: true });
-if (toTop) toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+if (toTop) toTop.addEventListener('click', () => {
+  if (lenis) lenis.scrollTo(0, { duration: 1.1 });
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 if (!REDUCE) {
   const pars = $$('[data-par]');
@@ -1423,7 +1542,7 @@ const searchBtn = $('#searchBtn');
 if (searchBtn) searchBtn.addEventListener('click', openPal);
 addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openPal(); }
-  if (e.key === 'Escape') { closePal(); if (sheet) sheet.classList.remove('on'); }
+  if (e.key === 'Escape') { closePal(); if (sheet) sheet.classList.remove('on'); closePanel(); }
   if (e.key === '/' && !/input|textarea/i.test(document.activeElement.tagName)) {
     e.preventDefault();
     if (current === 'work' && workSearch) workSearch.focus(); else openPal();
@@ -1569,8 +1688,15 @@ addEventListener('resize', () => { if (current === 'live') { sizeChart(); drawCh
 
 /* ============ AI ============ */
 const chatBox = $('#chat'), aiInput = $('#aiInput'), sendBtn = $('#aiSend');
+const aiSide = $('#aiSide'), aiScrim = $('#aiScrim');
 
-/* Normalisasi role: API OpenAI-compatible cuma kenal user / assistant / system */
+function openPanel(){ if (aiSide) aiSide.classList.add('on'); if (aiScrim) aiScrim.classList.add('on'); }
+function closePanel(){ if (aiSide) aiSide.classList.remove('on'); if (aiScrim) aiScrim.classList.remove('on'); }
+const aiPanel = $('#aiPanel'), aiPanelClose = $('#aiPanelClose');
+if (aiPanel) aiPanel.addEventListener('click', openPanel);
+if (aiPanelClose) aiPanelClose.addEventListener('click', closePanel);
+if (aiScrim) aiScrim.addEventListener('click', closePanel);
+
 function normRole(r){ return r === 'user' ? 'user' : 'assistant'; }
 let messages = (LS.get('z_chat', []) || [])
   .filter(m => m && typeof m.content === 'string' && m.content.trim())
@@ -1645,9 +1771,16 @@ function paintHistory(){
   if (!chatBox) return;
   chatBox.innerHTML = '';
   if (!messages.length) {
-    chatBox.innerHTML = '<div style="margin:auto;text-align:center;color:var(--dim);font-size:.84rem;max-width:320px;line-height:1.7">' +
-      '<div style="font-family:\'Space Grotesk\';font-size:1.05rem;color:var(--ink);margin-bottom:6px;letter-spacing:-.02em">Mulai percakapan</div>' +
-      'Semua pesan cuma disimpan di perangkat lo. Nggak dikirim ke mana pun selain API model.</div>';
+    chatBox.innerHTML = '<div class="ai-empty">' +
+      '<div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="6" width="16" height="13" rx="4"/><path d="M9 12h.01M15 12h.01M9.5 16h5M12 3v3"/></svg></div>' +
+      '<h3>Apa yang mau lo kerjain?</h3>' +
+      '<p>Tanya soal kode, arsitektur, atau apa pun. Riwayat cuma disimpan di perangkat lo.</p>' +
+      '<div class="ai-cards">' +
+      '<button data-q="Jelasin arsitektur AM Premium dan kenapa semua logika berat dipindah ke serverless."><b>Arsitektur</b>Bahas rancangan AM Premium</button>' +
+      '<button data-q="Bikin regex validasi email yang aman, plus penjelasan singkat tiap bagian."><b>Kode</b>Bikin regex validasi email</button>' +
+      '<button data-q="Kasih 5 ide fitur buat ZukaiTemp yang murah diimplementasi tapi berguna."><b>Ide</b>5 fitur baru buat ZukaiTemp</button>' +
+      '<button data-q="Review potongan kode ini: fetch(url). Apa yang bisa diperbaiki?"><b>Review</b>Kritik kode fetch sederhana</button>' +
+      '</div></div>';
   } else {
     messages.forEach((m, i) => {
       const b = bubble(m.role, m.content);
@@ -1681,7 +1814,7 @@ function bindCopyCode(){
 function autosize(){
   if (!aiInput) return;
   aiInput.style.height = 'auto';
-  aiInput.style.height = Math.min(aiInput.scrollHeight, 150) + 'px';
+  aiInput.style.height = Math.min(aiInput.scrollHeight, 170) + 'px';
 }
 if (aiInput) {
   aiInput.addEventListener('input', autosize);
@@ -1735,7 +1868,6 @@ async function send(forced, isRegen){
 
   let full = '';
   try {
-    /* hanya kirim histori yang valid + batasi panjang */
     const payload = messages
       .filter(m => m.role === 'user' || m.role === 'assistant')
       .slice(-20)
@@ -1829,10 +1961,16 @@ if (aiClear) aiClear.addEventListener('click', () => {
   if (!messages.length) return;
   messages = []; LS.del('z_chat'); paintHistory(); toast('Riwayat dihapus');
 });
-const suggest = $('#suggest');
-if (suggest) suggest.addEventListener('click', e => {
-  const b = e.target.closest('button');
-  if (b && aiInput) { aiInput.value = b.textContent.trim(); send(); }
+const aiNew = $('#aiNew');
+if (aiNew) aiNew.addEventListener('click', () => {
+  if (streaming && controller) controller.abort();
+  messages = []; LS.del('z_chat'); paintHistory();
+  if (aiInput) aiInput.focus();
+  toast('Percakapan baru', 'ok');
+});
+chatBox.addEventListener('click', e => {
+  const b = e.target.closest('.ai-cards button');
+  if (b && aiInput) { aiInput.value = b.dataset.q; send(); }
 });
 
 paintHistory();
@@ -1846,4 +1984,4 @@ addEventListener('resize', setTabInd);
 })();
 </script>
 </body>
-</html>
+                  </html>
